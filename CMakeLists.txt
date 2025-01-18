@@ -16,38 +16,46 @@ endif()
 # 	set(CMAKE_CXX_STANDARD 20)
 # endif()
 
-# Declare library
-add_library(wxMDArtProvider)
-target_include_directories(wxMDArtProvider INTERFACE include)
-
+# Set source files to compile
 if(ADD_AWESOME_ART)
-    file(GLOB AWSOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/wxAwesome*.cpp")
-    target_sources(wxMDArtProvider PRIVATE ${AWSOURCES})
+    file(GLOB AWSOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/wxAwesome*.cpp")
+    set(SOURCE ${SOURCE} ${AWSOURCES})
 endif()
 
 if(ADD_MDESIGN_ART)
-    file(GLOB MDSOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/wxMaterial*.cpp")
-    target_sources(
-        wxMDArtProvider PRIVATE
-        ${MDSOURCES}
-    )
+    file(GLOB MDSOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/wxMaterial*.cpp")
+    set(SOURCE ${SOURCE} ${MDSOURCES})
 endif()
 
 if(ADD_FLUENTUI_ART)
-    file(GLOB FLSOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/wxFluentui*.cpp")
-    target_sources(
-        wxMDArtProvider PRIVATE
-        ${FLSOURCES}
-    )
+    file(GLOB FLSOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/wxFluentui*.cpp")
+    set(SOURCE ${SOURCE} ${FLSOURCES})
 endif()
 
 if(ADD_SIMPLE_ART)
-    target_sources(
-        wxMDArtProvider PRIVATE
-        src/wxSimpleIconsArt.cpp
-    )
+set(SOURCE ${SOURCE} src/wxSimpleIconsArt.cpp)
 endif()
 
+# Declare library
+add_library(wxMDArtProvider SHARED ${SOURCE})
+
+if(ADD_AWESOME_ART)
+    target_compile_definitions(wxMDArtProvider PUBLIC HAS_AWESOME_ART)
+endif()
+
+if(ADD_MDESIGN_ART)
+    target_compile_definitions(wxMDArtProvider PUBLIC HAS_MDESIGN_ART)
+endif()
+
+if(ADD_FLUENTUI_ART)
+    target_compile_definitions(wxMDArtProvider PUBLIC HAS_FLUENTUI_ART)
+endif()
+
+if(ADD_SIMPLE_ART)
+    target_compile_definitions(wxMDArtProvider PUBLIC HAS_SIMPLE_ART)
+endif()
+
+target_include_directories(wxMDArtProvider INTERFACE include)
 target_link_libraries(wxMDArtProvider ${wxWidgets_LIBRARIES})
 
 # Add example to build

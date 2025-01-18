@@ -4,17 +4,29 @@
 #include <wx/artprov.h>
 #include <wx/bitmap.h>
 #include <wx/bmpbndl.h>
+
+#ifdef HAS_AWESOME_ART
 #include "wxAwesomeBrandsArt.hpp"
 #include "wxAwesomeRegularArt.hpp"
 #include "wxAwesomeSolidArt.hpp"
+#endif
+
+#ifdef HAS_FLUENTUI_ART
 #include "wxFluentuiFilledArt.hpp"
 #include "wxFluentuiRegularArt.hpp"
+#endif
+
+#ifdef HAS_MDESIGN_ART
 #include "wxMaterialFilledArt.hpp"
 #include "wxMaterialOutlinedArt.hpp"
 #include "wxMaterialRoundArt.hpp"
 #include "wxMaterialSharpArt.hpp"
 #include "wxMaterialTwoToneArt.hpp"
+#endif
+
+#ifdef HAS_SIMPLE_ART
 #include "wxSimpleIconsArt.hpp"
+#endif
 
 class wxMaterialDesignArtProvider : public wxArtProvider
 {
