@@ -117,17 +117,15 @@ const int COLOR_CHOICE_ID = ::wxNewId();
 // Bitmap sizes that can be chosen in the size selection wxChoice.
 static const int bitmapSizes[] = { -1, 16, 24, 32, 64, 128, 256, 0 };
 
-wxBEGIN_EVENT_TABLE(wxArtBrowserDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(wxArtBrowserDialog, wxFrame)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, wxArtBrowserDialog::OnSelectItem)
     EVT_CHOICE(SIZE_CHOICE_ID, wxArtBrowserDialog::OnChangeSize)
     EVT_CHOICE(wxID_ANY, wxArtBrowserDialog::OnChooseClient)
     EVT_COLOURPICKER_CHANGED(COLOR_CHOICE_ID, wxArtBrowserDialog::OnChangeColor)
 wxEND_EVENT_TABLE()
 
-wxArtBrowserDialog::wxArtBrowserDialog(wxWindow *parent)
-    : wxDialog(parent, wxID_ANY, "Art resources browser",
-               wxDefaultPosition, wxDefaultSize,
-               wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER)
+wxArtBrowserDialog::wxArtBrowserDialog()
+    : wxFrame(NULL, wxID_ANY, "Art resources browser")
 {
     m_currentArtId = wxART_10K;
 

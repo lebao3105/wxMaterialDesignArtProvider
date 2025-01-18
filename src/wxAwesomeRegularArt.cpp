@@ -1,4 +1,4 @@
-#include "wxAwesomeRegularArt.hpp" 
+#include "../include/wxAwesomeRegularArt.hpp" 
 #include <wx/regex.h> 
 
 // Return SVG for the current ID as a string 

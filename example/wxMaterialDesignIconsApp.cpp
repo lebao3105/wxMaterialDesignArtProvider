@@ -22,17 +22,11 @@ IMPLEMENT_APP(wxMaterialDesignIconsApp);
 
 bool wxMaterialDesignIconsApp::OnInit()
 {
-
-    wxFrame frame(NULL, wxID_ANY, wxT("wxArtProvider sample"),
-                  wxDefaultPosition, wxSize(450, 340));
-    frame.Show(true);
-
-
     // Register art provider
     wxArtProvider::Push(new wxMaterialDesignArtProvider);
 
-    wxArtBrowserDialog dialog(&frame);
-    dialog.ShowModal();
+    wxArtBrowserDialog* mainFm = new wxArtBrowserDialog();
+    mainFm->Show(true);
 
-    return false;
+    return true;
 }

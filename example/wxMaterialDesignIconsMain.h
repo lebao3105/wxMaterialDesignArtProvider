@@ -20,10 +20,10 @@
 
 #include "wxMaterialDesignIconsApp.h"
 
-class wxArtBrowserDialog : public wxDialog
+class wxArtBrowserDialog : public wxFrame
 {
 public:
-    wxArtBrowserDialog(wxWindow *parent);
+    wxArtBrowserDialog();
     ~wxArtBrowserDialog();
 
     void SetArtClient(const wxArtClient& client);
