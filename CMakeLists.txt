@@ -5,10 +5,6 @@ project(wxMDArtProvider VERSION 1.0)
 find_package(wxWidgets REQUIRED COMPONENTS core base adv)
 include(${wxWidgets_USE_FILE})
 
-if(WIN32)
-    include(Use_wxWindows)
-endif()
-
 # C++ Standard
 # set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # set(CMAKE_CXX_EXTENSIONS OFF)
