@@ -33,7 +33,7 @@ set(SOURCE ${SOURCE} src/wxSimpleIconsArt.cpp)
 endif()
 
 # Declare library
-add_library(wxMDArtProvider SHARED ${SOURCE})
+add_library(wxMDArtProvider SHARED ${SOURCE} src/wxMaterialDesignArtProvider.cpp)
 
 if(ADD_AWESOME_ART)
     target_compile_definitions(wxMDArtProvider PUBLIC HAS_AWESOME_ART)
