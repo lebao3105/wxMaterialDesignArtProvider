@@ -51,7 +51,16 @@ if(ADD_SIMPLE_ART)
     target_compile_definitions(wxMDArtProvider PUBLIC HAS_SIMPLE_ART)
 endif()
 
-target_include_directories(wxMDArtProvider INTERFACE include)
+target_include_directories(wxMDArtProvider
+    PRIVATE
+        # where the library itself will look for its internal headers
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PUBLIC
+        # where top-level project will look for the library's public headers
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        # where external projects will look for the library's public headers
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
 target_link_libraries(wxMDArtProvider ${wxWidgets_LIBRARIES})
 
 # Add example to build
